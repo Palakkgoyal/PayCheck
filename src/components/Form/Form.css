@@ -1,0 +1,124 @@
+.form_main_container {
+    margin-block: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    flex-direction: column;
+}
+
+.form_heading {
+    margin: 0px;
+    max-width: 100%;
+    width: inherit;
+    font-weight: unset;
+    font-size: 56px;
+    font-weight: 500;
+    line-height: 68px;
+    color: rgb(4, 4, 97);
+    margin-bottom: 20px;
+}
+
+.form_para {
+    margin: 0px;
+    max-width: 100%;
+    width: inherit;
+    font-weight: unset;
+    font-size: 20px;
+    line-height: 28px;
+    color: rgba(29, 83, 159, 0.7);
+    overflow-wrap: break-word;
+    max-width: 80vw;
+    width: 580px;
+}
+
+.form_action_btn {
+    padding: 0px 30px;
+    color: white;
+    letter-spacing: 3px;
+    background-color: rgb(42, 42, 155);
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    transition: all 0.2s ease-in-out;
+    display: block;
+}
+
+.form_action_btn:hover {
+    background-color: rgb(56, 56, 158);
+}
+
+.form_action_btn:active {
+    background-color: rgb(92, 92, 219);
+    transform: scale(0.85);
+}
+
+.hide_it {
+    animation: hide 0.3s linear forwards;
+}
+
+.radio_btn_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.form_container {
+    position: fixed;
+    background-color: rgba(233,233,233,1) !important;
+    top: 100vh;
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form_container > * {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gender_container {
+    position: relative;
+}
+
+.fieldset {
+    padding: 20px;
+    width: 600px;
+    max-width: 80vw;
+
+}
+
+.gender_label_container {
+    margin: 0;
+    display: flex;
+    gap: 5px;
+}
+
+.other_btn {
+    padding: 3px 20px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.other_input {
+    padding: 4px;
+    border: 2px solid #eee;
+    outline: none;
+}
+
+
+
+@keyframes hide {
+    from { opacity: 1 }
+    to { opacity: 0; display: none;}
+}
+
+@media (max-width:800px) {
+    .form_heading {
+        font-size: 40px;
+        line-height: 40px;
+    }
+}

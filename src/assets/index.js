@@ -3,6 +3,7 @@ import logo_with_bg from "./PayCheck-logos.jpeg"
 import logo_black from "./PayCheck-logos_black.png"
 import logo_white from "./PayCheck-logos_white.png"
 import not_found from "./not_found.png"
+import login from "./login.png"
 
 export {
     logo, 
@@ -10,4 +11,5 @@ export {
     logo_black,
     logo_white,
     not_found,
+    login,
 }

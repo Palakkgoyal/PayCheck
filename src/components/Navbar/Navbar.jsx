@@ -3,14 +3,13 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Loader from '../Loader/Loader';
 import { logo_with_bg } from '../../assets';
 import { Link } from "react-router-dom";
+import CTA from "../CTA/CTA";
+import { ImHome } from "react-icons/im";
+import { FaUserCircle } from "react-icons/fa";
 
 
 const Navbar = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
-
-    // if (isLoading) {
-    //     return <Loader />;
-    // }
 
     return (
         <header className="header">
@@ -22,46 +21,16 @@ const Navbar = () => {
                 />
             </div>
             <nav className="nav_menu">
-                <Link to="/">
-                    Home
+                <Link to="/" className="para nav_menu_item">
+                    <ImHome />
                 </Link>
-                <Link to="/user">
-                    Profile
+                <Link to="/profile" className="para nav_menu_item">
+                    <FaUserCircle />
                 </Link>
-                <button>
-                    Login
-                </button>
+                <CTA text="Add Wage" target="/add-wage-form" />
             </nav>
         </header>
-        // <div>
-        //     <LoginButton />
-        //     {isAuthenticated && (
-        //       <div>
-        //         <LogoutButton />
-        //         {user.name} {" "}
-        //         {user.email}
-        //       </div>
-        //     )}
-        // </div>
     )
 }
 
 export default Navbar
-
-
-const LoginButton = () => {
-    const { loginWithRedirect } = useAuth0();
-
-    return <button onClick={() => loginWithRedirect()}>Log In</button>;
-};
-
-
-const LogoutButton = () => {
-    const { logout } = useAuth0();
-
-    return (
-        <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
-            Log Out
-        </button>
-    );
-};

@@ -1,0 +1,32 @@
+.main_heading {
+    color: #4a4a4a;
+    font-family: Raleway, sans-serif;
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 1.4;
+    fill: #4f4e4e;
+    letter-spacing: .01em;
+    word-wrap: break-word;
+}
+
+
+.para {
+    color: #343434;
+    font-family: Open Sans, sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.8em;
+    letter-spacing: 0em;
+    margin: 1em 0;
+}
+
+
+@media  (max-width: 800px) {
+    .main_heading {
+        font-size: 30px;
+    }
+
+    .para {
+        font-size: 18px;
+    }
+}

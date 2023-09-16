@@ -1,5 +1,4 @@
 .header {
-    border: 1px solid red;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,5 +14,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8vw;
+    gap: 40px;
+}
+
+.nav_menu_item {
+    text-decoration: none;
+    font-size: 35px;
+    margin: 0;
+}
+
+.nav_menu_item:hover {
+    border-bottom: 3px solid;
 }

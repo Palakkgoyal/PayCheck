@@ -3,6 +3,8 @@ import Layout from "./Layout/Layout";
 import Loader from "./Loader/Loader";
 import Navbar from "./Navbar/Navbar";
 import NotFound from "./NotFound/NotFound";
+import Form from "./Form/Form";
+import Profile from "./Profile/Profile";
 
 export {
     Home,
@@ -10,4 +12,6 @@ export {
     Loader,
     Navbar,
     NotFound,
+    Form,
+    Profile,
 }
