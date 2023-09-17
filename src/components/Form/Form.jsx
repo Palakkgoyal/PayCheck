@@ -43,31 +43,6 @@ const Form = () => {
         formRef.current.style.top = scrollValRef.current + "vh"
     }
 
-    async function handleSubmit() {
-        console.log("submitting")
-        const postCollection = db.collection("users");
-        const data = {
-            ...formData,
-            email: user?.email
-        }
-        postCollection.add(data)
-            .then(() => {
-                setFormData({
-                    gender: "",
-                    role: "",
-                    salary: 0,
-                    views: "",
-                })
-                alert("Submitted 😄")
-            })
-            .catch((err) => {
-                alert("Error: ", err)
-            })
-            .finally(() => {
-                setSubmitting(false)
-                navigate("/")
-            })
-    }
 
     if (isLoading) {
         return <Loader />
@@ -75,6 +50,80 @@ const Form = () => {
 
     if (!isAuthenticated) {
         return <Login />
+    }
+
+    async function handleSubmit() {
+        const collectionName = isOtherRole ? "other" : formData?.role
+        const collectionRef = db.collection(collectionName);
+        const statsDocRef = collectionRef.doc("stats");
+        try {
+            await db
+                .runTransaction(async (transaction) => {
+                    const statsDocSnapshot = await transaction.get(statsDocRef)
+
+                    if (statsDocSnapshot.exists) {
+                        const oldData = statsDocSnapshot.data()
+                        const updatedTotalDocs = oldData.totalDocs + 1;
+                        const updatedAverageSalary = Math.round(((oldData.totalDocs * parseInt(oldData.averageSalary)) + parseInt(formData.salary)) / updatedTotalDocs)
+
+                        let updatedHighestSalary, updatedHighestGender, updatedLowestSalary, updatedLowestGender;
+
+                        if (oldData.highestSalary < formData.salary) {
+                            updatedHighestSalary = formData.salary
+                            updatedHighestGender = formData.gender
+                        }
+                        else {
+                            updatedHighestSalary = oldData.highestSalary
+                            updatedHighestGender = oldData.highestGender
+                        }
+
+                        if (oldData.lowestSalary > formData.salary) {
+                            updatedLowestSalary = formData.salary
+                            updatedLowestGender = formData.gender
+                        }
+                        else {
+                            updatedLowestSalary = oldData.lowestSalary
+                            updatedLowestGender = oldData.lowestGender
+                        }
+
+                        transaction.update(statsDocRef, {
+                            highestSalary: updatedHighestSalary,
+                            highestGender: updatedHighestGender,
+                            lowestSalary: updatedLowestSalary,
+                            lowestGender: updatedLowestGender,
+                            totalDocs: updatedTotalDocs,
+                            averageSalary: updatedAverageSalary,
+                        })
+
+                    }
+                    else {
+                        const data = {
+                            highestSalary: formData.salary,
+                            highestGender: formData.gender,
+                            lowestSalary: formData.salary,
+                            lowestGender: formData.gender,
+                            totalDocs: 1,
+                            averageSalary: formData.salary,
+                        }
+                        transaction.set(statsDocRef, data);
+                        console.log('Document created successfully!');
+                    }
+
+                    const docData = {
+                        ...formData,
+                        email: user?.email
+                    }
+                    const docDataRef = collectionRef.doc()
+                    transaction.set(docDataRef, docData)
+                })
+        }
+        catch (error) {
+            console.error(error, "err")
+        }
+        finally {
+            setSubmitting(false)
+            navigate("/")
+        }
     }
 
     return (
@@ -338,7 +387,7 @@ const Form = () => {
                     </fieldset>
                 </div>
 
-                <div className="views_container">
+                <div className="views_container" style={{ position: "relative" }}>
                     <fieldset className="fieldset">
                         <legend className="main_heading">
                             What are your views?
@@ -356,7 +405,6 @@ const Form = () => {
                             cols={30}
                             rows={5}
                         />
-                        {submitting && <Loader />}
                         <Btn
                             text="Submit"
                             onClick={formData.views.length > 3 && formData.gender.length > 1 ? () => {
@@ -365,6 +413,7 @@ const Form = () => {
                             } : () => { }}
                         />
                     </fieldset>
+                    {submitting && <Loader />}
                 </div>
             </div>
         </div>

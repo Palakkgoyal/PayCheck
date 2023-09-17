@@ -1,0 +1,100 @@
+.home_container {
+    border: 1px solid red;
+    margin-block: 10vh;
+}
+
+.hero_container {
+    display: flex;
+    gap: 40px;
+}
+
+.stats_main_container {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+}
+
+.stats_title_container {}
+
+.stats_data_container {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    /* align-items: center; */
+}
+
+.individual_data {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.glass {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.choice_main_container {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    gap: 40px;
+}
+
+.choice_container {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 15px;
+    gap: 20px;
+}
+
+.choice_btns_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.choice_btns_container > button {
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    padding: 5px;
+}
+
+.choice_btns_container>button:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 1000px) {
+    .hero_container {
+        flex-direction: column-reverse;
+        gap: 20px;
+    }
+
+    .hero_container > * {
+        width: 100%;
+    }
+
+    .choice_btns_container {
+        gap: 20px;
+    }
+
+    .choice_btns_container > button {
+        font-size: 19px;
+    }
+}
+
+
+/* ---------------- SLIDER -------------- */
