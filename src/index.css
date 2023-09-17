@@ -10,3 +10,7 @@ body {
   background-color: rgba(233,233,233,1);
   overflow-x: hidden;
 }
+
+::-webkit-scrollbar {
+  height: 15px;              /* height of horizontal scrollbar ← You're missing this */          /* width of vertical scrollbar */
+}

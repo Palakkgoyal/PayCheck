@@ -27,13 +27,6 @@ const Profile = () => {
                     Logout
                 </button>
             </div>
-            <div className="user_posts">
-                <h1 className="main_heading">Salary Posted</h1>
-                <div>
-                    <p>No post to show...</p>
-
-                </div>
-            </div>
         </div>
     )
 }
